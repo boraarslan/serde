@@ -85,16 +85,16 @@ mod pretend;
 mod ser;
 mod this;
 
-#[proc_macro_derive(Serialize, attributes(serde))]
-pub fn derive_serialize(input: TokenStream) -> TokenStream {
+#[no_mangle]
+pub extern "C" fn derive_serialize(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as DeriveInput);
     ser::expand_derive_serialize(&mut input)
         .unwrap_or_else(syn::Error::into_compile_error)
         .into()
 }
 
-#[proc_macro_derive(Deserialize, attributes(serde))]
-pub fn derive_deserialize(input: TokenStream) -> TokenStream {
+#[no_mangle]
+pub extern "C" fn derive_deserialize(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as DeriveInput);
     de::expand_derive_deserialize(&mut input)
         .unwrap_or_else(syn::Error::into_compile_error)

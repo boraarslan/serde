@@ -1,0 +1,16 @@
+[package]
+name = "serde_derive_watt"
+version = "0.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "serde_derive_watt"
+proc-macro = true
+
+[dependencies]
+watt = "0.5"
+
+[dev-dependencies]
+serde = { version = "1", path = "../serde" }
